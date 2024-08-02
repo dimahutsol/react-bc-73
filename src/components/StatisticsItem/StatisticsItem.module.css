@@ -1,0 +1,11 @@
+.text {
+  color: var(--color-gray);
+  font-size: var(--font-medium);
+  font-weight: 300;
+}
+
+.counter {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--color-accent);
+}
