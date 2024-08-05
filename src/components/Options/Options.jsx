@@ -7,9 +7,9 @@ export const Options = ({ options, handleClick }) => {
       <Heading title="Ratings you can leave😉" top bottom />
       <ul className={css.pointsList}>
         {options.map((item, index) => (
-          <button key={item} onClick={() => handleClick(item, index + 1)}>
-            {item}
-          </button>
+          <li key={item}>
+            <button onClick={() => handleClick(item, index + 1)}>{item}</button>
+          </li>
         ))}
       </ul>
     </>
