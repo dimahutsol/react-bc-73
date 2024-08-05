@@ -10,17 +10,29 @@ const Points = () => {
     five: 0,
   });
 
-  const handleClick = item => {
-    setPoints(prev => ({ ...prev, [item]: prev[item] + 1 }));
+  const handleClick = (item, step) => {
+    setPoints(prev => ({ ...prev, [item]: prev[item] + step }));
   };
+  const total = Object.values(points).reduce((acc, value) => acc + value, 0);
+
   return (
     <div>
       <ul className={css.pointsList}>
-        {Object.keys(points).map(item => (
-          <button key={item} onClick={() => handleClick(item)}>
+        {Object.keys(points).map((item, index) => (
+          <button key={item} onClick={() => handleClick(item, index + 1)}>
             {item}
           </button>
         ))}
+      </ul>
+      <ul className={css.pointsList}>
+        {Object.entries(points).map(([key, value]) => (
+          <li key={key}>
+            <span>
+              {key}: {value}
+            </span>
+          </li>
+        ))}
+        <li>Total:{total}</li>
       </ul>
     </div>
   );
