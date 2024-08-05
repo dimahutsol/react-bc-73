@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import css from './Points.module.css';
+import { useState } from "react";
+
+import { Options, Feedback, Heading } from "components";
 
 const Points = () => {
   const [points, setPoints] = useState({
@@ -11,29 +12,18 @@ const Points = () => {
   });
 
   const handleClick = (item, step) => {
-    setPoints(prev => ({ ...prev, [item]: prev[item] + step }));
+    setPoints((prev) => ({ ...prev, [item]: prev[item] + step }));
   };
   const total = Object.values(points).reduce((acc, value) => acc + value, 0);
 
   return (
     <div>
-      <ul className={css.pointsList}>
-        {Object.keys(points).map((item, index) => (
-          <button key={item} onClick={() => handleClick(item, index + 1)}>
-            {item}
-          </button>
-        ))}
-      </ul>
-      <ul className={css.pointsList}>
-        {Object.entries(points).map(([key, value]) => (
-          <li key={key}>
-            <span>
-              {key}: {value}
-            </span>
-          </li>
-        ))}
-        <li>Total:{total}</li>
-      </ul>
+      <Options options={Object.keys(points)} handleClick={handleClick} />
+      {total > 0 ? (
+        <Feedback feedback={[...Object.entries(points), ["total", total]]} />
+      ) : (
+        <Heading title="Leave a review" top />
+      )}
     </div>
   );
 };
