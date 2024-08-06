@@ -3,3 +3,33 @@
   justify-content: center;
   gap: 10px;
 }
+
+.btn {
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-small);
+}
+
+.one {
+  background-color: #dad7cd;
+}
+
+.two {
+  background-color: #a3b18a;
+}
+
+.three {
+  background-color: #588157;
+}
+
+.four {
+  background-color: #3a5a40;
+}
+
+.five {
+  background-color: #344e41;
+}
+
+.reset {
+  background-color: red;
+}
