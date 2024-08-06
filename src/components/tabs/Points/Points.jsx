@@ -16,9 +16,24 @@ const Points = () => {
   };
   const total = Object.values(points).reduce((acc, value) => acc + value, 0);
 
+  const handleResetClick = () => {
+    setPoints({
+      one: 0,
+      two: 0,
+      three: 0,
+      four: 0,
+      five: 0,
+    });
+  };
+
   return (
     <div>
-      <Options options={Object.keys(points)} handleClick={handleClick} />
+      <Options
+        options={Object.keys(points)}
+        handleClick={handleClick}
+        total={total}
+        handleResetClick={handleResetClick}
+      />
       {total > 0 ? (
         <Feedback feedback={[...Object.entries(points), ["total", total]]} />
       ) : (
