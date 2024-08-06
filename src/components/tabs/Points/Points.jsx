@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Options, Feedback, Heading } from "components";
+import { useLocalStorage } from "hooks/useLocalStorage";
 
 const initialState = {
   one: 0,
@@ -10,13 +11,7 @@ const initialState = {
 };
 
 const Points = () => {
-  const [points, setPoints] = useState(
-    () => JSON.parse(window.localStorage.getItem("points")) ?? initialState
-  );
-
-  useEffect(() => {
-    window.localStorage.setItem("points", JSON.stringify(points));
-  }, [points]);
+  const [points, setPoints] = useLocalStorage("points", initialState);
 
   const handleClick = (item, step) => {
     setPoints((prev) => ({ ...prev, [item]: prev[item] + step }));
@@ -24,13 +19,7 @@ const Points = () => {
   const total = Object.values(points).reduce((acc, value) => acc + value, 0);
 
   const handleResetClick = () => {
-    setPoints({
-      one: 0,
-      two: 0,
-      three: 0,
-      four: 0,
-      five: 0,
-    });
+    setPoints(initialState);
   };
 
   return (
