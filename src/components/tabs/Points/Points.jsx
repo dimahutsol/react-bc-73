@@ -1,15 +1,22 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import { Options, Feedback, Heading } from "components";
 
+const initialState = {
+  one: 0,
+  two: 0,
+  three: 0,
+  four: 0,
+  five: 0,
+};
+
 const Points = () => {
-  const [points, setPoints] = useState({
-    one: 0,
-    two: 0,
-    three: 0,
-    four: 0,
-    five: 0,
-  });
+  const [points, setPoints] = useState(
+    () => JSON.parse(window.localStorage.getItem("points")) ?? initialState
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("points", JSON.stringify(points));
+  }, [points]);
 
   const handleClick = (item, step) => {
     setPoints((prev) => ({ ...prev, [item]: prev[item] + step }));
