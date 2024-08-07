@@ -1,0 +1,23 @@
+.card {
+  text-align: center;
+}
+
+.img {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  object-fit: cover;
+  width: 150px;
+}
+
+.button {
+  font-weight: bold;
+  font-family: "Nunito", sans-serif;
+  border-radius: 30px;
+  border: 0;
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: rgb(255, 0, 110);
+  color: #fff;
+  margin-top: 20px;
+  cursor: pointer;
+}

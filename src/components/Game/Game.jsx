@@ -1,9 +1,11 @@
 import css from "./Game.module.css";
 
-export const Game = ({ question, handleClickVariant }) => {
+export const Game = ({ question, handleClickVariant, percentage }) => {
   return (
     <>
-      <h2>Progress</h2>
+      <div className={css.progress}>
+        <div style={{ width: `${percentage}%` }}></div>
+      </div>
       <h2 className={css.title}>{question.title}</h2>
       <ul>
         {question.variants.map((item, index) => (
