@@ -1,6 +1,6 @@
-import { Game } from "components";
-import css from "./Quize.module.css";
 import { useState } from "react";
+import { Game, Result } from "components";
+import css from "./Quize.module.css";
 
 const questions = [
   {
@@ -48,15 +48,27 @@ const Quize = () => {
     setStep(step + 1);
   };
 
-  console.log(correct);
+  const restartGame = () => {
+    setCorrect(0);
+    setStep(0);
+  };
 
   return (
     <div className={css.wrapper}>
       <div className={css.box}>
-        <Game
-          question={questions[step]}
-          handleClickVariant={handleClickVariant}
-        />
+        {questions.length !== step ? (
+          <Game
+            percentage={Math.round((step / questions.length) * 100)}
+            question={questions[step]}
+            handleClickVariant={handleClickVariant}
+          />
+        ) : (
+          <Result
+            correct={correct}
+            total={questions.length}
+            restartGame={restartGame}
+          />
+        )}
       </div>
     </div>
   );

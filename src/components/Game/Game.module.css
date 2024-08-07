@@ -12,5 +12,24 @@
 }
 
 .title {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 30px;
+  background-color: rgb(232, 232, 232);
+  margin-bottom: 25px;
+  & div {
+    height: 100%;
+    border-radius: 30px;
+    width: 80%;
+    background: rgb(18, 231, 48);
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(
+      90deg,
+      rgba(18, 231, 48, 1) 0%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  }
 }

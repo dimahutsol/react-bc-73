@@ -6,3 +6,4 @@ export * from "./Heading/Heading";
 export * from "./Options/Options";
 export * from "./Feedback/Feedback";
 export * from "./Game/Game";
+export * from "./Result/Result";
