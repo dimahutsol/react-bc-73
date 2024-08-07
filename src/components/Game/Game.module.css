@@ -11,6 +11,16 @@
   }
 }
 
+.correct {
+  border-color: greenyellow;
+  background-color: rgba(131, 174, 116, 0.495);
+}
+
+.wrong {
+  border-color: rgb(255, 54, 47);
+  background-color: rgba(243, 132, 120, 0.495);
+}
+
 .title {
   margin-bottom: 20px;
 }

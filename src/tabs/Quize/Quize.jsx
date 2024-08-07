@@ -40,12 +40,22 @@ const questions = [
 const Quize = () => {
   const [correct, setCorrect] = useState(0);
   const [step, setStep] = useState(0);
+  const [click, setClick] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const handleClickVariant = (index) => {
     if (questions[step].correct === index) {
       setCorrect(correct + 1);
     }
-    setStep(step + 1);
+
+    setClick(true);
+    setSelectedIndex(index);
+
+    setTimeout(() => {
+      setStep(step + 1);
+      setClick(false);
+      setSelectedIndex(null);
+    }, 2000);
   };
 
   const restartGame = () => {
@@ -58,6 +68,8 @@ const Quize = () => {
       <div className={css.box}>
         {questions.length !== step ? (
           <Game
+            selectedIndex={selectedIndex}
+            click={click}
             percentage={Math.round((step / questions.length) * 100)}
             question={questions[step]}
             handleClickVariant={handleClickVariant}

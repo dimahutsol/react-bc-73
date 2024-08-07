@@ -1,6 +1,12 @@
 import css from "./Game.module.css";
 
-export const Game = ({ question, handleClickVariant, percentage }) => {
+export const Game = ({
+  question,
+  handleClickVariant,
+  percentage,
+  click,
+  selectedIndex,
+}) => {
   return (
     <>
       <div className={css.progress}>
@@ -10,7 +16,15 @@ export const Game = ({ question, handleClickVariant, percentage }) => {
       <ul>
         {question.variants.map((item, index) => (
           <li
-            className={css["item-question"]}
+            className={[
+              css["item-question"],
+              click && index === question.correct ? css.correct : "",
+              click &&
+              index === selectedIndex &&
+              selectedIndex !== question.correct
+                ? css.wrong
+                : "",
+            ].join(" ")}
             key={item}
             onClick={() => handleClickVariant(index)}
           >
