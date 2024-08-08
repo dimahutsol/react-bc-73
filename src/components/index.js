@@ -9,3 +9,4 @@ export * from "./Game/Game";
 export * from "./Result/Result";
 export * from "./TodosForm/TodosForm";
 export * from "./TodoList/TodosList";
+export * from "./SearchBox/SearchBox";
