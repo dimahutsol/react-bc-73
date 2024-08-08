@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const TodosForm = ({onSubmit}) => {
+export const TodosForm = ({ onSubmit }) => {
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {
@@ -11,8 +11,8 @@ export const TodosForm = ({onSubmit}) => {
     e.preventDefault();
     onSubmit(value);
 
+    setValue("");
   };
-
 
   return (
     <form onSubmit={handleSubmit}>

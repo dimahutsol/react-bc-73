@@ -1,14 +1,28 @@
-import { TodosForm } from "components"
+import { TodosForm, Section, Container, TodosList } from "components";
+import { nanoid } from "nanoid";
+import { useState } from "react";
 
 const Todos = () => {
+  const [todos, setTodos] = useState([]);
 
-    const onSubmit = (text) =>{
-        console.log(text);
-        
-    }
+  const onSubmit = (text) => {
+    const todo = {
+      id: nanoid(),
+      text,
+    };
+
+    setTodos((prev) => [...prev, todo]);
+  };
+
+  console.log(todos);
   return (
-    <div> <TodosForm onSubmit={onSubmit}/> </div>
-  )
-}
+    <Section>
+      <Container>
+        <TodosForm onSubmit={onSubmit} />
+        <TodosList todos={todos} />
+      </Container>
+    </Section>
+  );
+};
 
-export default Todos
+export default Todos;
