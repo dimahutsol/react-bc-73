@@ -24,6 +24,7 @@ const Todos = () => {
   const handleSearch = (e) => {
     setFilter(e.target.value);
   };
+
   const filteredTodos = todos.filter((todo) =>
     todo.text.toLowerCase().includes(filter.toLowerCase())
   );
