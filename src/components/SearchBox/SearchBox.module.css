@@ -1,0 +1,12 @@
+.box {
+  /* width: 100vw; */
+  width: 300px;
+  margin: 0 auto;
+  & input {
+    width: 100%;
+  }
+}
+.name {
+  text-align: center;
+  margin-bottom: 10px;
+}
