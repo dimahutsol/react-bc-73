@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { Options, Feedback, Heading } from "components";
-import { useLocalStorage } from "hooks/useLocalStorage";
+import { Options, Feedback, Heading } from 'components';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 
 const initialState = {
   one: 0,
@@ -11,10 +10,10 @@ const initialState = {
 };
 
 const Points = () => {
-  const [points, setPoints] = useLocalStorage("points", initialState);
+  const [points, setPoints] = useLocalStorage('points', initialState);
 
   const handleClick = (item, step) => {
-    setPoints((prev) => ({ ...prev, [item]: prev[item] + step }));
+    setPoints(prev => ({ ...prev, [item]: prev[item] + step }));
   };
   const total = Object.values(points).reduce((acc, value) => acc + value, 0);
 
@@ -31,7 +30,7 @@ const Points = () => {
         handleResetClick={handleResetClick}
       />
       {total > 0 ? (
-        <Feedback feedback={[...Object.entries(points), ["total", total]]} />
+        <Feedback feedback={[...Object.entries(points), ['total', total]]} />
       ) : (
         <Heading title="Leave a review" top />
       )}

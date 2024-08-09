@@ -1,23 +1,37 @@
-import { useState } from "react";
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import s from './TodosForn.module.css';
+
+const initialValues = {
+  text: '',
+};
+
+const validationSchema = Yup.object().shape({
+  text: Yup.string()
+    .min(2, 'Too Short!')
+    .max(10, 'Too Long!')
+    .required('Required'),
+});
 
 export const TodosForm = ({ onSubmit }) => {
-  const [value, setValue] = useState("");
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(value);
-
-    setValue("");
+  const handleSubmit = (value, options) => {
+    onSubmit(value.text);
+    options.resetForm();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={value} onChange={handleChange} type="text" />
-      <button type="submit"> Add to do</button>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={validationSchema}
+    >
+      <Form className={s.form}>
+        <div className={s.box}>
+          <Field name="text" type="text" />
+          <button type="submit"> Add to do</button>
+        </div>
+        <ErrorMessage name="text" component="span" />
+      </Form>
+    </Formik>
   );
 };
