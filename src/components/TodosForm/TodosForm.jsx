@@ -1,17 +1,11 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
-import s from './TodosForn.module.css';
+import { ErrorMessage, Field, Form, Formik } from "formik";
+
+import s from "./TodosForn.module.css";
+import { validationSchema } from "helpers/validationSchema";
 
 const initialValues = {
-  text: '',
+  text: "",
 };
-
-const validationSchema = Yup.object().shape({
-  text: Yup.string()
-    .min(2, 'Too Short!')
-    .max(10, 'Too Long!')
-    .required('Required'),
-});
 
 export const TodosForm = ({ onSubmit }) => {
   const handleSubmit = (value, options) => {
