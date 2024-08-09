@@ -14,7 +14,6 @@ export const ChangeTodoForm = ({ onSubmit, text }) => {
     onSubmit(value.text);
     options.resetForm();
   };
-
   return (
     <Formik
       initialValues={{ text }}
