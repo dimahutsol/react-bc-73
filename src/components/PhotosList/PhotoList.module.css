@@ -1,0 +1,16 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
+.item {
+    width: 195px;
+
+    & img {
+        object-fit: fill;
+        height: 100%;
+        width: 100%;
+    }
+}

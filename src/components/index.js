@@ -12,3 +12,4 @@ export * from './TodoList/TodosList';
 export * from './SearchBox/SearchBox';
 export * from './TodosForm/ChangeTodoForm.jsx';
 export * from './SearchPhotos/SearchPhotos.jsx';
+export * from './PhotosList/PhotosList.jsx';
