@@ -14,3 +14,4 @@ export * from "./TodosForm/ChangeTodoForm.jsx";
 export * from "./SearchPhotos/SearchPhotos.jsx";
 export * from "./PhotosList/PhotosList.jsx";
 export * from "./Loader/Loader.jsx";
+export * from "./ImageModal/ImageModal.jsx";
