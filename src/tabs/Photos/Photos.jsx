@@ -6,6 +6,7 @@ import {
   Container,
   Loader,
   Heading,
+  ImageModal,
 } from "components";
 import { fetchImages } from "services/pexelsAPI";
 import css from "./Photos.module.css";
@@ -18,6 +19,8 @@ const Photos = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalImage, setModalImage] = useState({});
 
   useEffect(() => {
     if (!query) return;
@@ -54,21 +57,42 @@ const Photos = () => {
     setPage((prev) => prev + 1);
   };
 
+  const handleOpenModal = (img) => {
+    setModalImage(img);
+    setOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
+    setModalImage({});
+  };
+
   return (
     <Section>
       <Container>
         <SearchPhotos onSearchSubmit={handleSearchSubmit} />
         {isEmpty && (
-          <Heading title={"Nothing find, please enter valid query!"} />
+          <Heading title={"Nothing found, please enter a valid query!"} />
         )}
-        {photos.length > 0 && <PhotosList photos={photos} />}
+        {photos.length > 0 && (
+          <PhotosList photos={photos} handleOpenModal={handleOpenModal} />
+        )}
+
+        <ImageModal
+          modalIsOpen={openModal}
+          closeModal={closeModal}
+          url={modalImage.url}
+          alt={modalImage.alt}
+        />
         {isLoading && <Loader />}
         {showLoadMore && (
           <button className={css.btnLoadMore} onClick={handleClick}>
             Load More
           </button>
         )}
-        {isError && <Heading title={"Something went wrong!"} />}
+        {isError && (
+          <Heading title={"Something went wrong, try again later!"} />
+        )}
       </Container>
     </Section>
   );
