@@ -7,6 +7,7 @@ import {
   Loader,
   Heading,
   ImageModal,
+  SearchCountries,
 } from "components";
 import { fetchImages } from "services/pexelsAPI";
 import css from "./Photos.module.css";
@@ -20,6 +21,7 @@ const Photos = () => {
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState({});
 
   useEffect(() => {
     if (!query) return;
@@ -56,12 +58,19 @@ const Photos = () => {
     setPage((prev) => prev + 1);
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (modalImage) => {
+    setModalImage(modalImage);
     setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalImage({});
+    setIsModalOpen(false);
   };
 
   return (
     <Section>
+      <SearchCountries />
       <Container>
         <SearchPhotos onSearchSubmit={handleSearchSubmit} />
         {isEmpty && (
@@ -71,7 +80,11 @@ const Photos = () => {
           <PhotosList photos={photos} handleOpenModal={handleOpenModal} />
         )}
 
-        {isModalOpen && <ImageModal />}
+        <ImageModal
+          modalImage={modalImage}
+          isModalOpen={isModalOpen}
+          handleCloseModal={handleCloseModal}
+        />
 
         {isLoading && <Loader />}
         {showLoadMore && (
