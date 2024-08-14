@@ -19,8 +19,7 @@ const Photos = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [modalImage, setModalImage] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!query) return;
@@ -57,14 +56,8 @@ const Photos = () => {
     setPage((prev) => prev + 1);
   };
 
-  const handleOpenModal = (img) => {
-    setModalImage(img);
-    setOpenModal(true);
-  };
-
-  const closeModal = () => {
-    setOpenModal(false);
-    setModalImage({});
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -78,12 +71,8 @@ const Photos = () => {
           <PhotosList photos={photos} handleOpenModal={handleOpenModal} />
         )}
 
-        <ImageModal
-          modalIsOpen={openModal}
-          closeModal={closeModal}
-          url={modalImage.url}
-          alt={modalImage.alt}
-        />
+        {isModalOpen && <ImageModal />}
+
         {isLoading && <Loader />}
         {showLoadMore && (
           <button className={css.btnLoadMore} onClick={handleClick}>
