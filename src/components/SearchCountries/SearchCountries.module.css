@@ -29,13 +29,13 @@
 
   cursor: pointer;
 }
-.select option:first-of-type {
+.select option[value="default"] {
   color: red;
 }
 
-.defaultValue {
+/* .defaultValue {
   color: red !important;
-}
+} */
 
 .btn {
   width: 50px;

@@ -36,7 +36,7 @@ export const SearchCountries = () => {
           name="region"
           onChange={handleChange}
         >
-          <option className={s.defaultValue} value="default">
+          <option disabled value="default">
             Select a region
           </option>
           {regions.map((region) => {
