@@ -11,7 +11,7 @@ import SearchCountries from './pages/SearchCountries/SearchCounties';
 
 function App() {
 	return (
-		<div>
+		<>
 			<Header />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
@@ -24,7 +24,7 @@ function App() {
 				<Route path='/searchCountries' element={<SearchCountries />} />
 				<Route path='*' element={<Navigate to='/' />} />
 			</Routes>
-		</div>
+		</>
 	);
 }
 
