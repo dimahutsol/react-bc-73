@@ -8,12 +8,7 @@ export const Header = () => {
       <nav>
         <ul className={s.list}>
           <li>
-            <NavLink
-              className={(props) => {
-                console.log(props);
-              }}
-              to="/"
-            >
+            <NavLink className={addActive} to="/">
               Home
             </NavLink>
           </li>
@@ -40,6 +35,11 @@ export const Header = () => {
           <li>
             <NavLink className={addActive} to="todos">
               Todos
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className={addActive} to="countries">
+              Countries
             </NavLink>
           </li>
         </ul>
