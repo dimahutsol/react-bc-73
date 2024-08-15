@@ -8,9 +8,7 @@ import 'modern-normalize/modern-normalize.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<App />
 		<Toaster />
 	</React.StrictMode>
 );
