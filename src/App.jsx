@@ -10,13 +10,8 @@ import Countries from './pages/Countries/Countries';
 import SearchCountries from './pages/SearchCountries/SearchCounties';
 
 function App() {
-	return <h2>App</h2>;
-}
-
-export default App;
-
-{
-	/* <>
+	return (
+		<>
 			<Header />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
@@ -29,5 +24,8 @@ export default App;
 				<Route path='/searchCountries' element={<SearchCountries />} />
 				<Route path='*' element={<Navigate to='/' />} />
 			</Routes>
-		</> */
+		</>
+	);
 }
+
+export default App;
