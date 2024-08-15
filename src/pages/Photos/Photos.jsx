@@ -7,7 +7,6 @@ import {
   Loader,
   Heading,
   ImageModal,
-  SearchCountries,
 } from "components";
 import { fetchImages } from "services/pexelsAPI";
 import css from "./Photos.module.css";
@@ -70,7 +69,6 @@ const Photos = () => {
 
   return (
     <Section>
-      <SearchCountries />
       <Container>
         <SearchPhotos onSearchSubmit={handleSearchSubmit} />
         {isEmpty && (

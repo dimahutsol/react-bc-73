@@ -15,6 +15,6 @@ export * from "./SearchPhotos/SearchPhotos.jsx";
 export * from "./PhotosList/PhotosList.jsx";
 export * from "./Loader/Loader.jsx";
 export * from "./ImageModal/ImageModal.jsx";
-export * from "./SearchCountries/SearchCountries.jsx";
+export * from "./SearchCountriesForm/SearchCountriesForm.jsx";
 export * from "./Header/Header.jsx";
 export * from "./CountriesList/CountriesList.jsx";
