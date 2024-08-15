@@ -12,7 +12,7 @@ export default defineConfig({
 			components: '/src/components',
 			data: '/src/data',
 			styles: '/src/styles',
-			pages: '/src/pages',
+			tabs: '/src/tabs',
 			hooks: '/src/hooks',
 			helpers: '/src/helpers',
 			services: '/src/services',
