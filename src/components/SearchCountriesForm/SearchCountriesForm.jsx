@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import s from "./SearchCountries.module.css";
+import s from "./SearchCountriesForm.module.css";
 import { FiSearch } from "react-icons/fi";
 
 const regions = [
@@ -11,7 +11,7 @@ const regions = [
   { id: "oceania", value: "oceania", name: "Oceania" },
 ];
 
-export const SearchCountries = () => {
+export const SearchCountriesForm = ({ onSubmit }) => {
   const [region, setRegion] = useState("");
 
   const handleChange = (e) => {
@@ -24,7 +24,7 @@ export const SearchCountries = () => {
       toast.error("Please select region");
       return;
     }
-    console.log(region);
+    onSubmit(region);
   };
 
   return (

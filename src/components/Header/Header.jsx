@@ -42,6 +42,11 @@ export const Header = () => {
               Countries
             </NavLink>
           </li>
+          <li>
+            <NavLink className={addActive} to="searchCountries">
+              Search Countries
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
