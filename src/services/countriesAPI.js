@@ -8,3 +8,8 @@ export const getCountries = async () => {
   const { data } = await instance.get("/region/europe");
   return data;
 };
+
+export const getRegions = async (region) => {
+  const { data } = await instance.get(`/region/${region}`);
+  return data;
+};
