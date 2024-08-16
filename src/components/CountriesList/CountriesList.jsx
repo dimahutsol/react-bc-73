@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import css from "./CountriesList.module.css";
 
 export const CountriesList = ({ countries }) => {
@@ -6,7 +7,9 @@ export const CountriesList = ({ countries }) => {
       {countries.map((country) => {
         return (
           <li key={country.name.common} className={css.item}>
-            <img src={country.flags.png} alt={country.name.common} />
+            <Link to={`/countries/${country.name.common}`}>
+              <img src={country.flags.png} alt={country.name.common} />
+            </Link>
           </li>
         );
       })}
