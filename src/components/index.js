@@ -18,3 +18,4 @@ export * from "./ImageModal/ImageModal.jsx";
 export * from "./SearchCountriesForm/SearchCountriesForm.jsx";
 export * from "./Header/Header.jsx";
 export * from "./CountriesList/CountriesList.jsx";
+export * from "./CountryDetails/CountryDetails.jsx";
