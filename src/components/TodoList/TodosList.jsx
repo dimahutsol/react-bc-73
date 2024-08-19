@@ -1,4 +1,8 @@
-export const TodosList = ({ todos, handleDelete, handleEditToDo }) => {
+import { useSelector } from "react-redux";
+import { selectTodos } from "reduxStore/selectors";
+
+export const TodosList = ({ handleDelete, handleEditToDo }) => {
+  const todos = useSelector(selectTodos);
   return (
     <ul>
       {todos.map((todo) => (

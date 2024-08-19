@@ -2,14 +2,18 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 
 import s from "./TodosForn.module.css";
 import { validationSchema } from "helpers/validationSchema";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../reduxStore/actions";
 
 const initialValues = {
   text: "",
 };
 
 export const TodosForm = ({ onSubmit }) => {
+  const dispatch = useDispatch();
   const handleSubmit = (value, options) => {
-    onSubmit(value.text);
+    dispatch(addTodo(value.text));
+    // onSubmit(value.text);
     options.resetForm();
   };
 
