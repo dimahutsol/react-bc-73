@@ -1,32 +1,40 @@
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 import {
-	ADD_TODO,
-	CHANGE_TODO,
-	DELETE_TODO,
-	SET_CURRENT_TODO,
-} from './constants';
+  ADD_TODO,
+  CHANGE_TODO,
+  DELETE_TODO,
+  SET_CURRENT_TODO,
+  UPDATE_FILTER,
+} from "./constants";
 
-export const addTodo = text => {
-	return { type: ADD_TODO, payload: { text, id: nanoid() } };
+export const addTodo = (text) => {
+  return { type: ADD_TODO, payload: { text, id: nanoid() } };
 };
 
-export const deleteTodo = id => {
-	return {
-		type: DELETE_TODO,
-		payload: id,
-	};
+export const deleteTodo = (id) => {
+  return {
+    type: DELETE_TODO,
+    payload: id,
+  };
 };
 
-export const setCurrentTodo = todo => {
-	return {
-		type: SET_CURRENT_TODO,
-		payload: todo,
-	};
+export const setCurrentTodo = (todo) => {
+  return {
+    type: SET_CURRENT_TODO,
+    payload: todo,
+  };
 };
 
-export const changeTodo = text => {
-	return {
-		type: CHANGE_TODO,
-		payload: text,
-	};
+export const changeTodo = (text) => {
+  return {
+    type: CHANGE_TODO,
+    payload: text,
+  };
+};
+
+export const updateFilter = (value) => {
+  return {
+    type: UPDATE_FILTER,
+    payload: value,
+  };
 };
