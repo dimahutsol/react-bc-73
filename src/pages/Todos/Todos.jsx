@@ -6,11 +6,17 @@ import {
   SearchBox,
   ChangeTodoForm,
 } from "components";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentTodo } from "reduxStore/selectors";
+import { fetchTodos } from "reduxStore/operation";
 
 const Todos = () => {
   const currentTodo = useSelector(selectCurrentTodo);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
 
   return (
     <Section>
