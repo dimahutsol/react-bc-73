@@ -3,13 +3,14 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./TodosForn.module.css";
 import { validationSchema } from "helpers/validationSchema";
 import { useDispatch } from "react-redux";
-import { changeTodo, setCurrentTodo } from "reduxStore/todosSlice";
+import { setCurrentTodo } from "reduxStore/todosSlice";
+import { updateTodo } from "reduxStore/operation";
 
-export const ChangeTodoForm = ({ text }) => {
+export const ChangeTodoForm = ({ text, id }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = (value, options) => {
-    dispatch(changeTodo(value.text));
+    dispatch(updateTodo({ text: value.text, id }));
     options.resetForm();
   };
   return (

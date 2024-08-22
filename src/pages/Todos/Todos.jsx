@@ -30,11 +30,7 @@ const Todos = () => {
   return (
     <Section>
       <Container>
-        {currentTodo ? (
-          <ChangeTodoForm text={currentTodo.text} />
-        ) : (
-          <TodosForm />
-        )}
+        {currentTodo ? <ChangeTodoForm {...currentTodo} /> : <TodosForm />}
         <SearchBox />
         <TodosList />
         {isLoading && <Loader />}

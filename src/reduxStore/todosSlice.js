@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTodos, addTodo, deleteTodo } from "./operation";
+import { fetchTodos, addTodo, deleteTodo, updateTodo } from "./operation";
 
 const initialState = {
   items: [],
@@ -12,22 +12,8 @@ const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodo(state, action) {
-      state.items.push(action.payload);
-    },
-    deleteTodo(state, action) {
-      state.items = state.items.filter((item) => item.id !== action.payload);
-    },
     setCurrentTodo(state, action) {
       state.currentTodo = action.payload;
-    },
-    changeTodo(state, action) {
-      state.items = state.items.map((item) =>
-        item.id === state.currentTodo.id
-          ? { ...item, text: action.payload }
-          : item
-      );
-      state.currentTodo = null;
     },
   },
   extraReducers: (builder) => {
@@ -69,9 +55,26 @@ const todoSlice = createSlice({
       .addCase(deleteTodo.rejected, (state, action) => {
         state.isError = action.payload;
         state.isLoading = false;
-      });
+      })
+      .addCase(updateTodo.fulfilled, (state, action) => {
+        state.items = state.items.map((item) =>
+          item.id === state.currentTodo.id
+            ? { ...action.payload }
+            : item
+        );
+        state.currentTodo = null;
+        state.isLoading = false;
+      })
+      .addCase(updateTodo.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(updateTodo.rejected, (state, action) => {
+        state.isError = action.payload;
+        state.isLoading = false;
+      })
   },
 });
 
-export const { setCurrentTodo, changeTodo } = todoSlice.actions;
+export const { setCurrentTodo } = todoSlice.actions;
 export const todoReducer = todoSlice.reducer;
