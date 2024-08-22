@@ -3,8 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./TodosForn.module.css";
 import { validationSchema } from "helpers/validationSchema";
 import { useDispatch } from "react-redux";
-import { addTodo } from "reduxStore/todosSlice";
-import { nanoid } from "nanoid";
+import { addTodo } from "reduxStore/operation";
 
 const initialValues = {
   text: "",
@@ -13,7 +12,7 @@ const initialValues = {
 export const TodosForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (value, options) => {
-    dispatch(addTodo({ text: value.text, id: nanoid() }));
+    dispatch(addTodo({ text: value.text }));
     // onSubmit(value.text);
     options.resetForm();
   };
