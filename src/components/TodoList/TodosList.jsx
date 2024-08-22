@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectTodos, selectFilter } from "reduxStore/selectors";
-import { deleteTodo, setCurrentTodo } from "reduxStore/todosSlice";
+import { setCurrentTodo } from "reduxStore/todosSlice";
+import { deleteTodo } from "reduxStore/operation";
 
 export const TodosList = () => {
   const todos = useSelector(selectTodos);

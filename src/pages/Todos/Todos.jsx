@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import {
   TodosForm,
   Section,
@@ -5,13 +7,20 @@ import {
   TodosList,
   SearchBox,
   ChangeTodoForm,
+  Loader,
+  Heading,
 } from "components";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentTodo } from "reduxStore/selectors";
 import { fetchTodos } from "reduxStore/operation";
+import {
+  selectCurrentTodo,
+  selectIsLoading,
+  selectIsError,
+} from "reduxStore/selectors";
 
 const Todos = () => {
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
+
   const currentTodo = useSelector(selectCurrentTodo);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,6 +37,10 @@ const Todos = () => {
         )}
         <SearchBox />
         <TodosList />
+        {isLoading && <Loader />}
+        {isError && (
+          <Heading title={"Something went wrong, try again later!"} top />
+        )}
       </Container>
     </Section>
   );
