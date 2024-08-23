@@ -1,28 +1,37 @@
-import { useDispatch, useSelector } from "react-redux";
-import { selectTodos, selectFilter } from "reduxStore/selectors";
-import { setCurrentTodo } from "reduxStore/todosSlice";
-import { deleteTodo } from "reduxStore/operation";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentTodo } from 'reduxStore/todosSlice';
+import { deleteTodo } from 'reduxStore/operation';
+import { selectFilterdTodosMemo } from 'reduxStore/selectors';
+import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
+import s from './TodosList.module.css';
 
 export const TodosList = () => {
-  const todos = useSelector(selectTodos);
-  const filter = useSelector(selectFilter);
+  const todos = useSelector(selectFilterdTodosMemo);
+
   const dispatch = useDispatch();
 
-  const filteredTodos = todos.filter((todo) =>
-    todo.text.toLowerCase().includes(filter.toLowerCase())
-  );
-
   return (
-    <ul>
-      {filteredTodos.map((todo) => (
-        <li key={todo.id}>
-          {todo.text}
-          <button type="button" onClick={() => dispatch(deleteTodo(todo.id))}>
-            Delete
-          </button>
-          <button type="button" onClick={() => dispatch(setCurrentTodo(todo))}>
-            Change
-          </button>
+    <ul className={s.list}>
+      {todos.map((todo, idx) => (
+        <li className={s.item} key={todo.id}>
+          <div className={s.box}>
+            <p className={s.subText}>TODO #{idx + 1}</p>
+            <p className={s.text}>{todo.text}</p>
+            <button
+              className={s.deleteButton}
+              type="button"
+              onClick={() => dispatch(deleteTodo(todo.id))}
+            >
+              <RiDeleteBinLine />
+            </button>
+            <button
+              className={s.editButton}
+              type="button"
+              onClick={() => dispatch(setCurrentTodo(todo))}
+            >
+              <RiEdit2Line />
+            </button>
+          </div>
         </li>
       ))}
     </ul>
