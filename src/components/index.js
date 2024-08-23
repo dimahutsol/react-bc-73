@@ -20,3 +20,5 @@ export * from './Header/Header.jsx';
 export * from './CountriesList/CountriesList.jsx';
 export * from './CountryDetails/CountryDetails.jsx';
 export * from './GoBackBtn/GoBackBtn.jsx';
+export * from './RegesterForm/RegesterForm.jsx'
+export * from './LoginForm/LoginForm.jsx'

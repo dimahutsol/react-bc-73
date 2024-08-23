@@ -1,31 +1,40 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Props from "./pages/Props/Props";
-import Points from "./pages/Points/Points";
-import Quize from "./pages/Quize/Quize";
-import Todos from "./pages/Todos/Todos";
-import Photos from "./pages/Photos/Photos";
-import HomePage from "./pages/HomePage/HomePage";
 import { Header } from "./components";
-import Countries from "./pages/Countries/Countries";
-import SearchCountries from "./pages/SearchCountries/SearchCounties";
-import CountryInfo from "./pages/CountryInfo/CountryInfo";
+const Props = lazy(() => import("./pages/Props/Props"));
+const Points = lazy(() => import("./pages/Points/Points"));
+const Quize = lazy(() => import("./pages/Quize/Quize"));
+const Todos = lazy(() => import("./pages/Todos/Todos"));
+const Photos = lazy(() => import("./pages/Photos/Photos"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const Countries = lazy(() => import("./pages/Countries/Countries"));
+const SearchCountries = lazy(() =>
+  import("./pages/SearchCountries/SearchCounties")
+);
+const CountryInfo = lazy(() => import("./pages/CountryInfo/CountryInfo"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 
 function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/photos" element={<Photos />} />
-        <Route path="/quize" element={<Quize />} />
-        <Route path="/points" element={<Points />} />
-        <Route path="/props" element={<Props />} />
-        <Route path="/todos" element={<Todos />} />
-        <Route path="/countries" element={<Countries />} />
-        <Route path="/searchCountries" element={<SearchCountries />} />
-        <Route path="/countries/:id" element={<CountryInfo />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <Suspense fallback={<h2>Loading</h2>}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/photos" element={<Photos />} />
+          <Route path="/quize" element={<Quize />} />
+          <Route path="/points" element={<Points />} />
+          <Route path="/props" element={<Props />} />
+          <Route path="/todos" element={<Todos />} />
+          <Route path="/countries" element={<Countries />} />
+          <Route path="/searchCountries" element={<SearchCountries />} />
+          <Route path="/countries/:id" element={<CountryInfo />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
