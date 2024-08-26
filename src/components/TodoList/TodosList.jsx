@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentTodo } from 'reduxStore/todosSlice';
-import { deleteTodo } from 'reduxStore/operation';
-import { selectFilterdTodosMemo } from 'reduxStore/selectors';
-import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
-import s from './TodosList.module.css';
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentTodo } from "reduxStore/todos/todosSlice";
+import { deleteTodo } from "reduxStore/todos/operation";
+import { selectFilterdTodosMemo } from "reduxStore/todos/selectors";
+import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
+import s from "./TodosList.module.css";
 
 export const TodosList = () => {
   const todos = useSelector(selectFilterdTodosMemo);
