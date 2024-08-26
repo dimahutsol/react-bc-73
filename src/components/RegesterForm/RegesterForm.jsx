@@ -1,9 +1,13 @@
 import { Field, Form, Formik } from "formik";
 import { Section, Container } from "components";
+import { useDispatch } from "react-redux";
+import { register } from "reduxStore/auth/operation";
 
 export const RegesterForm = () => {
+  const dispatch = useDispatch();
   const handleSubmit = (values, action) => {
-    console.log(values);
+    dispatch(register(values));
+
     action.resetForm();
   };
 

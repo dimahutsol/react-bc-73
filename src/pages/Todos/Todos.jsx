@@ -10,12 +10,12 @@ import {
   Loader,
   Heading,
 } from "components";
-import { fetchTodos } from "reduxStore/operation";
+import { fetchTodos } from "reduxStore/todos/operation";
 import {
   selectCurrentTodo,
   selectIsLoading,
   selectIsError,
-} from "reduxStore/selectors";
+} from "reduxStore/todos/selectors";
 
 const Todos = () => {
   const isLoading = useSelector(selectIsLoading);

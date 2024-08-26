@@ -1,9 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
 
 import s from "./TodosForn.module.css";
 import { validationSchema } from "helpers/validationSchema";
-import { useDispatch } from "react-redux";
-import { addTodo } from "reduxStore/operation";
+import { addTodo } from "reduxStore/todos/operation";
 
 const initialValues = {
   text: "",

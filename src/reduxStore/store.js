@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { todoReducer } from "./todosSlice";
-import { filterReducer } from "./filterSlice";
+import { todoReducer } from "./todos/todosSlice";
+import { filterReducer } from "./todos/filterSlice";
+import { authReducer } from "./auth/authSlice";
 // import {
 //   persistStore,
 //   persistReducer,
@@ -26,6 +27,7 @@ export const store = configureStore({
   reducer: {
     todos: todoReducer,
     filter: filterReducer,
+    auth: authReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({
