@@ -1,17 +1,11 @@
-// https://66c721be732bf1b79fa57178.mockapi.io/todos
-
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-const instance = axios.create({
-  baseURL: "https://66c721be732bf1b79fa57178.mockapi.io",
-});
+import { instance } from "../auth/operation";
 
 export const fetchTodos = createAsyncThunk(
-  "todos/fetchAll",
+  "tasks/fetchAll",
   async (_, thunkApi) => {
     try {
-      const { data } = await instance.get("/todos");
+      const { data } = await instance.get("/tasks");
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -20,10 +14,10 @@ export const fetchTodos = createAsyncThunk(
 );
 
 export const addTodo = createAsyncThunk(
-  "todos/addTodo",
+  "tasks/addTodo",
   async (todo, thunkApi) => {
     try {
-      const { data } = await instance.post("/todos", todo);
+      const { data } = await instance.post("/tasks", todo);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -32,10 +26,10 @@ export const addTodo = createAsyncThunk(
 );
 
 export const deleteTodo = createAsyncThunk(
-  "todos/deleteTodo",
+  "tasks/deleteTodo",
   async (id, thunkApi) => {
     try {
-      const { data } = await instance.delete(`/todos/${id}`);
+      const { data } = await instance.delete(`/tasks/${id}`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -44,10 +38,10 @@ export const deleteTodo = createAsyncThunk(
 );
 
 export const updateTodo = createAsyncThunk(
-  "todos/updateTodo",
+  "tasks/updateTodo",
   async ({ text, id }, thunkApi) => {
     try {
-      const { data } = await instance.put(`/todos/${id}`, { text });
+      const { data } = await instance.patch(`/tasks/${id}`, { text });
       console.log(data);
 
       return data;
@@ -56,7 +50,3 @@ export const updateTodo = createAsyncThunk(
     }
   }
 );
-
-
-
-

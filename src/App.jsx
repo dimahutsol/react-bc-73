@@ -1,6 +1,8 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Header } from "./components";
+import { useDispatch } from "react-redux";
+import { refreshUser } from "./reduxStore/auth/operation";
 const Props = lazy(() => import("./pages/Props/Props"));
 const Points = lazy(() => import("./pages/Points/Points"));
 const Quize = lazy(() => import("./pages/Quize/Quize"));
@@ -16,6 +18,12 @@ const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <>
       <Header />
