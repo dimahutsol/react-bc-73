@@ -1,8 +1,9 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Header } from "./components";
-import { useDispatch } from "react-redux";
+import { Header, Loader, PrivateRoute, RestrictedRoute } from "./components";
+import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "./reduxStore/auth/operation";
+import { selectIsRefreshing } from "./reduxStore/auth/selectors";
 const Props = lazy(() => import("./pages/Props/Props"));
 const Points = lazy(() => import("./pages/Points/Points"));
 const Quize = lazy(() => import("./pages/Quize/Quize"));
@@ -19,26 +20,71 @@ const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 
 function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
       <Header />
       <Suspense fallback={<h2>Loading</h2>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/photos" element={<Photos />} />
-          <Route path="/quize" element={<Quize />} />
-          <Route path="/points" element={<Points />} />
-          <Route path="/props" element={<Props />} />
-          <Route path="/todos" element={<Todos />} />
-          <Route path="/countries" element={<Countries />} />
-          <Route path="/searchCountries" element={<SearchCountries />} />
-          <Route path="/countries/:id" element={<CountryInfo />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/photos"
+            element={
+              <PrivateRoute component={<Photos />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/quize"
+            element={<PrivateRoute component={<Quize />} redirectTo="/login" />}
+          />
+          <Route
+            path="/points"
+            element={
+              <PrivateRoute component={<Points />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/props"
+            element={<PrivateRoute component={<Props />} redirectTo="/login" />}
+          />
+          <Route
+            path="/todos"
+            element={<PrivateRoute component={<Todos />} redirectTo="/login" />}
+          />
+          <Route
+            path="/countries"
+            element={
+              <PrivateRoute component={<Countries />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/searchCountries"
+            element={
+              <PrivateRoute
+                component={<SearchCountries />}
+                redirectTo="/login"
+              />
+            }
+          />
+          <Route
+            path="/countries/:id"
+            element={
+              <PrivateRoute component={<CountryInfo />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={<LoginPage />} redirectTo="/todos" />
+            }
+          />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

@@ -25,3 +25,5 @@ export * from "./LoginForm/LoginForm.jsx";
 export * from "./AuthNav/AuthNav.jsx";
 export * from "./UserMenu/UserMenu.jsx";
 export * from "./Navigation/Navigation.jsx";
+export * from "./PrivateRoute/PrivateRoute.jsx";
+export * from "./RestrictedRoute/RestrictedRoute.jsx";
